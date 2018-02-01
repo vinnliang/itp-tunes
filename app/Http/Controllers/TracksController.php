@@ -22,14 +22,16 @@ class TracksController extends Controller
     ]);
   }
 
-  public function showTracks($genreId)
+  public function showTracks(Request $request)
   {
+    $genreName = $request->query('genres.Name');
+    $query = $request->all();
     $trackItems = DB::table('tracks')
     ->select('tracks.Name as TrackName', 'albums.title as AlbumTitle', 'artists.Name as ArtistName', 'tracks.UnitPrice' )
     ->join('albums', 'tracks.AlbumId', '=', 'albums.AlbumId')
     ->join('artists', 'artists.ArtistId', '=', 'albums.ArtistId')
     ->join('genres', 'genres.GenreId', '=', 'tracks.GenreId')
-    ->where('genres.Name', '=', $genreId)
+    ->where('genres.Name', '=', $query)
     ->get();
     return view('tracksByGenre',
     [

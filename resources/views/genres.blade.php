@@ -13,7 +13,8 @@
       @foreach($genres as $genre)
       <tr>
         <td>
-          <a href="/tracks/{{$genre->Name}}">{{$genre->Name}}</a>
+          <!--<a href="/tracks/{{$genre->Name}}">{{$genre->Name}}</a>-->
+          <a href="/tracks?genre={{$genre->Name}}">{{$genre->Name}}</a>
         </td>
       </tr>
       @endforeach
