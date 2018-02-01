@@ -89,6 +89,10 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+              </br></br>
+                <div class="links">
+                    <a href="{{ url('/genres') }}"><span style="font-size: 26px">ITP-Tunes</span></a>
+                </div>
             </div>
         </div>
     </body>
