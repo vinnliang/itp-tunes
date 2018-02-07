@@ -3,6 +3,7 @@
 @section('title', 'Playlists')
 
 @section('content')
+<a href="/playlists/new">Add Playlist</a>
 <ul>
     @foreach($playlists as $playlist)
       <li>
