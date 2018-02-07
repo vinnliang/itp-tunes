@@ -1,5 +1,7 @@
 @extends('main-layout')
 
+@section('title', 'Playlists')
+
 @section('content')
 <ul>
     @foreach($playlists as $playlist)
