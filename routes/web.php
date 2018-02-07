@@ -23,13 +23,10 @@ Route::get('/genres', 'GenresController@index');
 
 Route::get('/tracks', 'TracksController@index');
 
-//Route::get('/tracks/{name}', 'TracksController@showTracks');
-
-//Route::get('tracks?genre={name}', array(
-//  'as' => '/tracks/{name}',
-//  'uses' => 'TracksController@showTracks'
-//));
-
 Route::get('tracks', 'TracksController@showTracks');
+
+Route::get('/playlists', 'PlaylistsController@index');
+
+Route::get('/playlists/{id}', 'PlaylistsController@show');
 
 //Route::get('/tracks?genre={name}', 'TracksController@showTracks');
