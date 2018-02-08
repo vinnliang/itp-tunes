@@ -67,4 +67,46 @@ class PlaylistsController extends Controller
           ->withErrors($validation);
         }
     }
+
+    public function edit($id)
+    {
+      $playlist = DB::table('playlists')
+      ->where('playlists.PlaylistId', '=', $id)
+      ->first();
+      return view('edit-playlist',
+      [
+        'playlist'=> $playlist
+      ]);
+    }
+
+    public function delete($id) {
+    	DB::table('playlists')
+    		->where('PlaylistId', '=', $id)
+    		->delete();
+    	return redirect('/playlists');
+    }
+
+    public function saveChanges($id, Request $request)
+    {
+      $validation = Validator::make(
+        [
+            'playlistName' => $request->input('playlist')
+        ],
+        [
+            'playlistName' => 'required|min:3'
+        ]);
+
+      if ($validation->passes())
+      {
+          DB::table('playlists')
+          ->where('playlists.PlaylistId','=', $id)
+          ->update(['Name' => $request->input('playlist')]);
+          return redirect('/playlists');
+      }
+      else
+      {
+        return redirect('/playlists/' . $id . '/edit')
+        ->withErrors($validation);
+      }
+    }
 }
