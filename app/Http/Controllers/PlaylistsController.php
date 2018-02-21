@@ -27,10 +27,12 @@ class PlaylistsController extends Controller
         //->first();
         $playlist = Playlist::find($playlistID);
 
-        $tracks = DB::table('playlist_track')
-        ->join('tracks', 'tracks.TrackId', '=', 'playlist_track.TrackId')
-        ->where('PlaylistId', '=', $playlistID)
-        ->get();
+        // $tracks = DB::table('playlist_track')
+        // ->join('tracks', 'tracks.TrackId', '=', 'playlist_track.TrackId')
+        // ->where('PlaylistId', '=', $playlistID)
+        // ->get();
+
+        $tracks = $playlist->Tracks;
 
       return view('playlist-details',
       [
