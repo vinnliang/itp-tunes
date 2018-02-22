@@ -12,32 +12,53 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/genres');
 });
 
-Route::get('/invoices', 'InvoicesController@index');
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
 
-Route::get('/invoices/{id}', 'InvoicesController@showInvoice');
+Route::middleware(['protected'])->group(function()
+{
+    Route::get('/profile', 'AdminController@index');
+    Route::get('/settings', 'SettingsController@index');
+    Route::post('/settings', 'SettingsController@toggle');
+    Route::get('/invoices', 'InvoicesController@index');
+    Route::get('/invoices/{id}', 'InvoicesController@showInvoice');
+    Route::get('/phpinfo', function()
+    {
+      echo phpinfo();
+    });
+});
 
-Route::get('/genres', 'GenresController@index');
+Route::middleware(['maintenance'])->group(function()
+{
+  Route::get('/signup', 'SignupController@index');
 
-Route::get('/tracks', 'TracksController@index');
+  Route::post('/signup', 'SignupController@signup');
 
-Route::get('tracks', 'TracksController@showTracks');
+  Route::get('/genres', 'GenresController@index');
 
-Route::get('/playlists', 'PlaylistsController@index');
+  Route::get('/tracks', 'TracksController@index');
 
-Route::get('/playlists/new', 'PlaylistsController@create');
+  Route::get('tracks', 'TracksController@showTracks');
 
-Route::get('/playlists/{id}', 'PlaylistsController@show');
+  Route::get('/playlists', 'PlaylistsController@index');
 
-Route::get('/playlists/{id}/edit', 'PlaylistsController@edit');
+  Route::get('/playlists/new', 'PlaylistsController@create');
 
-Route::get('/playlists/{id}/delete', 'PlaylistsController@delete');
+  Route::get('/playlists/{id}', 'PlaylistsController@show');
 
-Route::post('/playlists/{id}', 'PlaylistsController@saveChanges');
+  Route::get('/playlists/{id}/edit', 'PlaylistsController@edit');
 
-Route::post('/playlists', 'PlaylistsController@store');
+  Route::get('/playlists/{id}/delete', 'PlaylistsController@delete');
+
+  Route::post('/playlists/{id}', 'PlaylistsController@saveChanges');
+
+  Route::post('/playlists', 'PlaylistsController@store');
+});
+
 
 
 //Route::get('/tracks?genre={name}', 'TracksController@showTracks');
