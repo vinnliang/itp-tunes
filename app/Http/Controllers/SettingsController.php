@@ -23,25 +23,18 @@ class SettingsController extends Controller
       $settingValue = Setting::find('maintenance_mode')->value;
       if( $settingValue == '0')
       {
-          // $setting = Setting::find('maintenance_mode');
-          // $setting->value = '1';
-          // //dd($setting);
-          // $setting->save();
-          // //dd($setting);
-          DB::table('settings')
-            ->where('id', 'maintenance_mode')
-            ->update(['value' => 1]);
+          $setting = Setting::find('maintenance_mode');
+          $setting->value = '1';
+          $setting->save();
+
           return redirect('/');
       }
       else
       {
-          // $setting = Setting::find('maintenance_mode');
-          // $setting->value == 0;
-          // $setting->save();
-          //dd($setting);
-          DB::table('settings')
-            ->where('id', 'maintenance_mode')
-            ->update(['value' => 0]);
+          $setting = Setting::find('maintenance_mode');
+          $setting->value = '0';
+          $setting->save();
+
           return redirect('/');
       }
     }
