@@ -57,6 +57,10 @@ Route::middleware(['maintenance'])->group(function()
   Route::post('/playlists/{id}', 'PlaylistsController@saveChanges');
 
   Route::post('/playlists', 'PlaylistsController@store');
+
+  Route::get('/artists', 'ArtistController@index');
+
+  Route::get('/artists/{id}/albums', 'ArtistController@showAlbums');
 });
 
 
