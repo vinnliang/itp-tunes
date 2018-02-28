@@ -61,6 +61,10 @@ Route::middleware(['maintenance'])->group(function()
   Route::get('/artists', 'ArtistController@index');
 
   Route::get('/artists/{id}/albums', 'ArtistController@showAlbums');
+
+  Route::get('/albums/{id}/reviews', 'ReviewController@showReviews');
+
+  Route::get('/albums/{id}/reviews/new', 'ReviewController@newReview');
 });
 
 

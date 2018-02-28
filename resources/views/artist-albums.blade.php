@@ -12,7 +12,7 @@
     </tr>
     @foreach($albums as $album)
     <tr>
-      <td>{{$album->Title}}</td>
+      <td><a href="/albums/{{$album->AlbumId}}/reviews">{{$album->Title}}</a></td>
     </tr>
     @endforeach
   </table>
