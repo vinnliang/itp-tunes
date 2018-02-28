@@ -41,7 +41,7 @@ class SettingsController extends Controller
           //dd($setting);
           DB::table('settings')
             ->where('id', 'maintenance_mode')
-            ->update(['value' => 1]);
+            ->update(['value' => 0]);
           return redirect('/');
       }
     }
