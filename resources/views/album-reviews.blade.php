@@ -1,10 +1,11 @@
 @extends('main-layout')
 
-@section('title', 'New Review')
+@section('title', 'Album Reviews')
 
 @section('content')
 </br>
 <h2>Reviews for {{$album->Title}}</h2>
+
 <ul>
   <table class="table">
     <tr>
@@ -20,5 +21,5 @@
   </table>
 </ul>
 </br></br></br>
-<a href="/albums/{{$album->AlbumId}}/reviews/new"button type="button" class="btn btn-primary btn-lg btn-block"> Write a new review </button></a>
+<a href="/albums/{{$album->AlbumId}}/reviews/new" button type="button" class="btn btn-primary btn-lg btn-block"> Write a new review </button></a>
 @endsection

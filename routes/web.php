@@ -65,6 +65,8 @@ Route::middleware(['maintenance'])->group(function()
   Route::get('/albums/{id}/reviews', 'ReviewController@showReviews');
 
   Route::get('/albums/{id}/reviews/new', 'ReviewController@newReview');
+
+  Route::post('/albums/{id}/reviews', 'ReviewController@saveReview');
 });
 
 

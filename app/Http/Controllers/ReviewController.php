@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Validator;
 
 class ReviewController extends Controller
 {
@@ -38,5 +39,37 @@ class ReviewController extends Controller
     [
       'album' => $album
     ]);
+  }
+
+  public function saveReview($albumId, Request $request)
+  {
+    $validation = Validator::make(
+    [
+        'title' => $request->input('review-title'),
+        'body' =>$request->input('review-body')
+    ],
+    [
+        'title' => 'required',
+        'body' => 'required|min:10'
+    ]);
+    if ($validation->passes())
+    {
+      DB::table('reviews')->insert(
+      [
+          'title' => $request->input('review-title'),
+          'body' => $request->input('review-body'),
+          'album_id' => $albumId,
+          'created_at' => date("Y-m-d H:i:s"),
+          'updated_at' => date("Y-m-d H:i:s")
+      ]);
+
+      return redirect('/albums/' . $albumId . '/reviews');
+    }
+    else
+    {
+      return redirect('/albums/' . $albumId. '/reviews/new')
+      ->withInput()
+      ->withErrors($validation);
+    }
   }
 }
